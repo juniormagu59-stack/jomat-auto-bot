@@ -20,9 +20,33 @@ def send_digit_signal():
         icon = "ODD (1,3,5,7,9)"
     else:
         icon = trade
-    msg = f"JOMAT DIGIT SIGNAL\n\nMarket: {market} Index\nTrade: {icon}\nTime: {datetime.now().strftime('%H:%M')} EAT\nConfidence: {conf}%\nDuration: 1 Tick"
+    # Entry point logic - 1 digit tu
+    if "OVER" in trade:
+        digit = int(trade.split()[-1])
+        entry_point = max(0, digit - 2)
+    else:
+        entry_point = trade  # kwa EVEN/ODD
+        digit = 3
+
+    WEBSITE = "https://jomatpro.site"
+
+    msg = f"""Jomat pro bots -deriv official
+JOMAT DIGIT SIGNAL
+
+Market {market} Index
+Trade {icon}
+Entry Point: {entry_point}
+Time {datetime.now().strftime('%H:%M')} EAT
+Confidence {conf}%
+Duration 1 Tick
+
+👇 TRADE NOW:
+{WEBSITE}"""
+
     try:
-        requests.post(URL + "sendMessage", json={"chat_id": CHANNEL_ID, "text": msg})
+        # Button ya website
+        keyboard = {"inline_keyboard": [[{"text": "🚀 TRADE NOW", "url": WEBSITE}]]}
+        requests.post(URL + "sendMessage", json={"chat_id": CHANNEL_ID, "text": msg, "reply_markup": keyboard})
     except:
         pass
 
