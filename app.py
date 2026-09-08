@@ -20,13 +20,27 @@ def send_digit_signal():
         icon = "ODD (1,3,5,7,9)"
     else:
         icon = trade
-    # Entry point logic - 1 digit tu
+          import random
+
+    # Entry point logic - 1 digit smart kulingana na AI
     if "OVER" in trade:
         digit = int(trade.split()[-1])
-        entry_point = max(0, digit - 2)
+        # OVER 3 = chagua random digit kubwa kuliko 3
+        possible = list(range(digit + 1, 10))
+        entry_point = random.choice(possible) if possible else 9
+        
+    elif "UNDER" in trade:
+        digit = int(trade.split()[-1])
+        # UNDER 3 = chagua random digit ndogo kuliko 3
+        possible = list(range(0, digit))
+        entry_point = random.choice(possible) if possible else 0
+        
     else:
-        entry_point = trade  # kwa EVEN/ODD
-        digit = 3
+        # EVEN / ODD - chagua random digit kutoka kwa set
+        if "ODD" in trade:
+            entry_point = random.choice([1,3,5,7,9])
+        else:  # EVEN
+            entry_point = random.choice([0,2,4,6,8])  
 
     WEBSITE = "https://jomatpro.site"
 
