@@ -6,15 +6,14 @@ from datetime import datetime
 app = Flask(__name__)
 
 # --- CONFIG - WEKA HAPA ---
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "8697863047:AAGsKQsP0YxM7tziO5Zl83QvMwMVJzUQAHM")
-TELEGRAM_CHAT_ID = os.environ.get("CHAT_ID", "1004320643772")
-WHATSAPP_TOKEN = os.environ.get("EAGVEmR4ZBS6wBSSUxJ74KSGU6U1hU8yyVJZBFNdcRUsZBKmD8xBKR3u5WwjlEgbhGZC2WZCjlZA4jVtdUXqxeZBpZCzO0QrPfeuxYSYVMBiQqBmebsm4yg1GyO6pYCemBNZARrF8I4KyOHkLfnfIrZBZAXAzHN5CEisZBNcZCFvdZA3ti61UFpYnhZBs3aMgv8INzfYxgZDZD", "")
-WHATSAPP_PHONE_ID = os.environ.get("1240710109133208", "")
-WHATSAPP_CHANNEL_ID = os.environ.get("2283812449106025", "") # kwa channel
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+WHATSAPP_TOKEN = os.environ.get("WHATSAPP_TOKEN")
+WHATSAPP_PHONE_ID = os.environ.get("WHATSAPP_PHONE_ID")
+WHATSAPP_CHANNEL_ID = os.environ.get("WHATSAPP_CHANNEL_ID")
 
 VERIFY_TOKEN = "jomat123"
 
-app = Flask(__name__)
 
 @app.route('/')
 def home():
