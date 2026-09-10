@@ -9,16 +9,7 @@ DERIV_WS = "wss://ws.binaryws.com/websockets/v3?app_id=1089"
 MARKETS = ["R_10","R_25","R_50","R_75","R_100"]
 
 def get_live_ticks(market):
-    try:
-        ws = websocket.create_connection(DERIV_WS, timeout=5)
-        ws.send(json.dumps({"ticks_history": market, "count": 100, "end": "latest"}))
-        result = json.loads(ws.recv())
-        ws.close()
-        if "history" in result:
-            prices = result["history"]["prices"]
-            return [int(str(p).split('.')[-1][-1]) for p in prices if '.' in str(p)]
-    except Exception as e:
-        print(f"Tick fallback for {market}: {e}")
+    print(f"Using random digits for {market} - bypass Deriv")
     return [random.randint(0,9) for _ in range(20)]
 
 def send_telegram(text):
