@@ -64,18 +64,22 @@ def generate_signal():
     analysis = random.choice(["OVER", "UNDER"])
     stake = random.randint(1, 5)
     
-    signal = f"""🚀 *JOMAT AUTO - DERIV DIGIT SIGNAL*
+     signal = f"""🚀 *JOMAT AUTO - DERIV DIGIT SIGNAL*
 
 📊 Market: {market} Index
 🔢 Digit: *{target}*
 📈 Prediction: *{analysis} {random.randint(0,4)}*
-⏰ Duration: 5 Ticks
+⏰ Duration: 1 Tick
+🎯 Entry Point: {random.randint(0,9)}
 💰 Stake: ${stake}
 🎯 Confidence: {random.randint(82,97)}%
 
-⏱️ {datetime.now().strftime('%H:%M:%S')} 
-_Trade wisely!_ 🔥
-"""
+⏱️ {datetime.now().strftime('%H:%M:%S')}
+
+👇 TRADE NOW:
+https://jomatpro.site
+""" 
+signal_msg += f"\n📢 WhatsApp Channel: https://whatsapp.com/channel/0029Vb8fI7FEAKWMmrEz1J0L"
     return signal
 
 def auto_loop():
@@ -88,7 +92,7 @@ def auto_loop():
             send_whatsapp_channel(sig)
         except Exception as e:
             print(f"Loop error: {e}")
-        time.sleep(300)  # 5 minutes
+        time.sleep(1800)  # 30 minutes
 
 # Anza loop automatically
 Thread(target=auto_loop, daemon=True).start()
