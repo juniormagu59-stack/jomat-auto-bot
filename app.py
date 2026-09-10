@@ -2,8 +2,8 @@ import os, time, random, requests, threading, json
 import websocket
 from flask import Flask
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHANNEL_ID = os.getenv("CHANNEL_ID")
+BOT_TOKEN = os.getenv("BOT_TOKEN") or os.getenv("TELEGRAM_TOKEN")
+CHANNEL_ID = os.getenv("CHANNEL_ID") or os.getenv("TELEGRAM_CHAT_ID")
 DERIV_WS = "wss://ws.binaryws.com/websockets/v3?app_id=1089"
 
 MARKETS = ["R_10","R_25","R_50","R_75","R_100"]
