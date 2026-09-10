@@ -61,11 +61,9 @@ def generate_signal():
     digits = list(range(10))
     target = random.choice(digits)
     market = random.choice(["Volatility 100", "Volatility 75", "Volatility 50"])
-    analysis = random.choice(["OVER", "UNDER"])
+    analysis = random.choice(["OVER", "UNDER", "EVEN", "ODD", "MATCHES", "DIFFERS"])
     stake = random.randint(1, 5)
-    
-     signal = f"""🚀 *JOMAT AUTO - DERIV DIGIT SIGNAL*
-
+    signal = f"""🚀 *JOMAT AUTO - DERIV DIGIT SIGNAL*
 📊 Market: {market} Index
 🔢 Digit: *{target}*
 📈 Prediction: *{analysis} {random.randint(0,4)}*
