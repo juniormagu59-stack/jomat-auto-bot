@@ -38,7 +38,7 @@ def send_to_telegram(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     data = {"chat_id": CHANNEL_ID, "text": text, "parse_mode": "Markdown"}
     try:
-        r = requests.post(url, data=data)
+        r = requests.post(url, data=data, timeout=10)
         print(f"Sent: {r.status_code} - {r.text}")
     except Exception as e:
         print(f"Error: {e}")
