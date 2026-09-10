@@ -2,6 +2,7 @@ import random
 import time
 import requests
 import os
+import threading
 from flask import Flask
 
 app = Flask(__name__)
@@ -10,8 +11,7 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHANNEL_ID = os.environ.get("CHANNEL_ID")
 
 def generate_signal():
-    digits = list(range(10))
-    target = random.choice(digits)
+    target = random.choice(list(range(10)))
     market = random.choice(["Volatility 100", "Volatility 75", "Volatility 50"])
     analysis = random.choice(["OVER", "UNDER", "EVEN", "ODD", "MATCHES", "DIFFERS"])
     stake = random.randint(1, 5)
@@ -37,14 +37,24 @@ def generate_signal():
 def send_to_telegram(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     data = {"chat_id": CHANNEL_ID, "text": text, "parse_mode": "Markdown"}
-    requests.post(url, data=data)
+    try:
+        requests.post(url, data=data)
+    except:
+        pass
 
-@app.route("/")
-def home():
-    return "JOMAT BOT IS LIVE"
-
-if __name__ == "__main__":
+def bot_loop():
     while True:
         sig = generate_signal()
         send_to_telegram(sig)
         time.sleep(1800)
+
+@app.route("/")
+def home():
+    return "JOMAT BOT IS LIVE - Running 24/7"
+
+# Start bot in background thread
+threading.Thread(target=bot_loop, daemon=True).start()
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
