@@ -3,7 +3,7 @@ import time
 import requests
 import os
 import threading
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -58,7 +58,9 @@ def bot_loop():
 @app.route("/")
 def home():
     return "JOMAT BOT IS LIVE - Running 24/7"
-
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    return "ok", 200
 # Start bot in background thread
 threading.Thread(target=bot_loop, daemon=True).start()
 
