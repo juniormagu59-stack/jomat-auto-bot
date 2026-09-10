@@ -37,10 +37,11 @@ def generate_signal():
 def send_to_telegram(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     data = {"chat_id": CHANNEL_ID, "text": text, "parse_mode": "Markdown"}
-    try:
-        requests.post(url, data=data)
-    except:
-        pass
+     try:
+        r = requests.post(url, data=data)
+        print(f"Sent: {r.status_code} - {r.text}")
+    except Exception as e:
+        print(f"Error: {e}")
 
 def bot_loop():
     while True:
