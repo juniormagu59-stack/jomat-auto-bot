@@ -44,10 +44,16 @@ def send_to_telegram(text):
         print(f"Error: {e}")
 
 def bot_loop():
+    print("BOT LOOP STARTED...")
     while True:
-        sig = generate_signal()
-        send_to_telegram(sig)
-        time.sleep(1800)
+        print("Generating signal...")
+        try:
+            sig = generate_signal()
+            print(f"Signal generated, length: {len(sig)}")
+            send_to_telegram(sig)
+        except Exception as e:
+            print(f"BOT LOOP ERROR: {e}")
+        time.sleep(900)
 
 @app.route("/")
 def home():
