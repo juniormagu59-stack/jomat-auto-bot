@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 BOT_TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHANNEL_ID = os.getenv("TELEGRAM_CHAT_ID")
+print(f"TOKEN CHECK: {BOT_TOKEN[:10] if BOT_TOKEN else 'MISSING'}", flush=True)
+print(f"CHAT_ID CHECK: {CHANNEL_ID}", flush=True)
 
 def generate_signal():
     target = random.choice(list(range(10)))
@@ -44,16 +46,18 @@ def send_to_telegram(text):
         print(f"Error: {e}")
 
 def bot_loop():
-    print("BOT LOOP STARTED...")
+    print("BOT LOOP STARTED...", flush=True)
     while True:
-        print("Generating signal...")
         try:
+            print("Generating signal...", flush=True)
             sig = generate_signal()
-            print(f"Signal generated, length: {len(sig)}")
+            print(f"Signal generated, length: {len(sig)}", flush=True)
             send_to_telegram(sig)
+            print("Sleeping 15 min...", flush=True)
+            time.sleep(900)  # 15 min
         except Exception as e:
-            print(f"BOT LOOP ERROR: {e}")
-        time.sleep(900)
+            print(f"LOOP ERROR: {e}", flush=True)
+            time.sleep(60)
 
 @app.route("/")
 def home():
