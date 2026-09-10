@@ -7,8 +7,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-CHANNEL_ID = os.environ.get("CHANNEL_ID")
+BOT_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHANNEL_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 def generate_signal():
     target = random.choice(list(range(10)))
