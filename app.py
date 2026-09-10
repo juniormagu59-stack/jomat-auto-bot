@@ -38,7 +38,7 @@ def generate_signal():
 
 def send_to_telegram(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    data = {"chat_id": CHANNEL_ID, "text": sig}
+    data = {"chat_id": CHANNEL_ID, "text": text}
     try:
         r = requests.post(url, data=data, timeout=10)
         print(f"Sent: {r.status_code} - {r.text}")
