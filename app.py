@@ -53,7 +53,7 @@ def generate_signal():
     c = Counter(ticks)
     digit, freq = c.most_common(1)[0]
     percent = int(freq / len(ticks) * 100)
-    if percent < 68: # ongeza threshold
+    if percent < 60: # ongeza threshold
         print(f"{market} digit {digit} only {percent}% - skip", flush=True)
         return None
     return f"🔥 *JOMAT LIVE SIGNAL* 🔥\n\nMarket: `{market}`\nDigit: *{digit}* - {percent}%\nTicks: {''.join(map(str,ticks[-10:]))}\n\nStake: $1 - Martingale 2 steps\nSource: *REAL Deriv*"
