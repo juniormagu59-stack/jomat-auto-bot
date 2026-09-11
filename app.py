@@ -70,7 +70,7 @@ def bot_loop():
                 print("No strong real signal this round", flush=True)
         except Exception as e:
             print(f"Loop error: {e}", flush=True)
-        time.sleep(180) # kila dakika 3 - real market usichoke API
+        time.sleep(900) # kila dakika 3 - real market usichoke API
 
 app = Flask(__name__)
 @app.route('/')
