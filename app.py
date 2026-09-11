@@ -9,7 +9,7 @@ import websocket
 BOT_TOKEN = os.getenv("BOT_TOKEN") or os.getenv("TELEGRAM_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID") or os.getenv("TELEGRAM_CHAT_ID")
 
-MARKETS = ["R_10","R_25","R_50","R_75","R_100","R_10_1s","R_25_1s","R_50_1s","R_75_1s","R_100_1s"]
+MARKETS = ["R_10", "R_25", "R_50", "R_75", "R_100", "1HZ10V", "1HZ25V", "1HZ50V", "1HZ75V", "1HZ100V"]
 
 def get_live_ticks(market):
     """REAL Deriv ticks - sio random tena"""
